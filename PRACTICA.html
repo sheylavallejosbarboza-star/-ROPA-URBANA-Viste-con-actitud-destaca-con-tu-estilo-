@@ -1,0 +1,987 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBAN STORE | Moda Urbana</title>
+
+<style>
+:root {
+  --azul: #163b62;
+  --azul2: #245982;
+  --verde: #285c4b;
+  --dorado: #c5a04b;
+  --beige: #f0e6d3;
+  --crema: #faf7f0;
+  --blanco: #fff;
+  --texto: #263746;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: var(--crema);
+  color: var(--texto);
+}
+
+header {
+  background: var(--azul);
+  color: white;
+  padding: 16px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px #0002;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--dorado);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 27px;
+  color: var(--dorado);
+}
+
+.logo h1 {
+  font-size: 23px;
+  letter-spacing: 2px;
+}
+
+.logo small {
+  color: var(--beige);
+  letter-spacing: 3px;
+  font-size: 10px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: var(--dorado);
+}
+
+.cart-button {
+  background: var(--dorado);
+  color: var(--azul);
+  border: none;
+  padding: 11px 17px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.hero {
+  min-height: 390px;
+  background:
+    linear-gradient(90deg, #102b47ee, #102b4770),
+    url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1800&q=85');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 55px 8%;
+  color: white;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h2 {
+  font-size: clamp(35px, 6vw, 58px);
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.hero h2 span {
+  color: var(--dorado);
+}
+
+.hero p {
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.hero button {
+  background: var(--dorado);
+  color: var(--azul);
+  padding: 14px 25px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.hero button:hover {
+  transform: translateY(-3px);
+  background: white;
+}
+
+.benefits {
+  background: var(--beige);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 23px 5%;
+  text-align: center;
+}
+
+.benefit {
+  color: var(--verde);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.catalog {
+  padding: 55px 5%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-title h2 {
+  color: var(--azul);
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.section-title p {
+  color: #697783;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.filters button {
+  border: 1px solid var(--verde);
+  color: var(--verde);
+  background: transparent;
+  border-radius: 20px;
+  padding: 10px 17px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.filters button.active,
+.filters button:hover {
+  background: var(--verde);
+  color: white;
+}
+
+.search-box {
+  display: block;
+  width: min(450px, 100%);
+  margin: 0 auto 30px;
+  padding: 13px 18px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline-color: var(--dorado);
+  font-size: 15px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 23px;
+}
+
+.product {
+  background: white;
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px #00000012;
+  transition: .3s;
+}
+
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px #0002;
+}
+
+.product img {
+  width: 100%;
+  height: 235px;
+  object-fit: cover;
+  background: var(--beige);
+}
+
+.product-info {
+  padding: 16px;
+}
+
+.category-tag {
+  color: var(--verde);
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.product h3 {
+  color: var(--azul);
+  font-size: 17px;
+  margin: 8px 0;
+}
+
+.product p {
+  font-size: 13px;
+  color: #697783;
+  line-height: 1.5;
+  min-height: 40px;
+}
+
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  gap: 8px;
+}
+
+.price {
+  font-size: 19px;
+  color: var(--verde);
+  font-weight: bold;
+}
+
+.add-btn {
+  background: var(--azul);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: var(--verde);
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  grid-column: 1/-1;
+}
+
+/* CARRITO */
+
+.cart-panel {
+  position: fixed;
+  right: -450px;
+  top: 0;
+  width: min(420px, 100%);
+  height: 100vh;
+  background: white;
+  z-index: 200;
+  padding: 25px;
+  box-shadow: -5px 0 20px #0002;
+  transition: .35s;
+  overflow-y: auto;
+}
+
+.cart-panel.open {
+  right: 0;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--beige);
+  padding-bottom: 18px;
+}
+
+.cart-header h2 {
+  color: var(--azul);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 27px;
+  cursor: pointer;
+  color: var(--azul);
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.cart-item h4 {
+  color: var(--azul);
+  font-size: 14px;
+}
+
+.cart-item small {
+  color: var(--verde);
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.quantity button {
+  border: none;
+  background: var(--beige);
+  padding: 4px 9px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.remove-btn {
+  background: #a94343 !important;
+  color: white;
+}
+
+.cart-total {
+  margin-top: 25px;
+  padding: 18px;
+  background: var(--beige);
+  border-radius: 9px;
+}
+
+.cart-total h3 {
+  display: flex;
+  justify-content: space-between;
+  color: var(--azul);
+  margin-bottom: 15px;
+}
+
+.checkout-btn {
+  background: var(--verde);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* FORMULARIO */
+
+.checkout {
+  padding: 55px 5%;
+  background: var(--beige);
+  display: none;
+}
+
+.checkout.show {
+  display: block;
+}
+
+.checkout-form {
+  max-width: 650px;
+  background: white;
+  padding: 28px;
+  margin: auto;
+  border-radius: 13px;
+  box-shadow: 0 5px 20px #0001;
+}
+
+.checkout-form h2 {
+  color: var(--azul);
+  margin-bottom: 20px;
+}
+
+.checkout-form label {
+  display: block;
+  margin: 13px 0 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.checkout-form input,
+.checkout-form select,
+.checkout-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  outline-color: var(--dorado);
+}
+
+.checkout-form textarea {
+  resize: vertical;
+}
+
+.confirm-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  background: var(--azul);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+footer {
+  background: var(--azul);
+  color: white;
+  padding: 35px 5%;
+  text-align: center;
+}
+
+footer strong {
+  color: var(--dorado);
+}
+
+footer p {
+  margin: 8px;
+  font-size: 13px;
+}
+
+@media(max-width:650px) {
+  header {
+    justify-content: center;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 13px;
+  }
+
+  .hero {
+    min-height: 350px;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .product img {
+    height: 165px;
+  }
+
+  .product-info {
+    padding: 10px;
+  }
+
+  .product h3 {
+    font-size: 14px;
+  }
+
+  .product p {
+    font-size: 12px;
+  }
+
+  .price {
+    font-size: 15px;
+  }
+
+  .add-btn {
+    font-size: 11px;
+    padding: 9px 7px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">U</div>
+    <div>
+      <h1>URBAN STORE</h1>
+      <small>VISTE TU PROPIO ESTILO</small>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#contacto">Contacto</a>
+    <button class="cart-button" onclick="toggleCart()">
+      🛒 Carrito (<span id="cart-count">0</span>)
+    </button>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <h2>VISTE DIFERENTE.<br><span>VIVE URBANO.</span></h2>
+    <p>
+      Descubre las últimas tendencias de moda urbana.
+      Encuentra tu estilo con prendas exclusivas para
+      hombre y mujer en URBAN STORE.
+    </p>
+    <button onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+      EXPLORAR CATÁLOGO →
+    </button>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="benefit">🚚 Envíos a todo el Perú</div>
+  <div class="benefit">⭐ Moda y calidad</div>
+  <div class="benefit">🔒 Compra sencilla</div>
+  <div class="benefit">👕 Estilo para todos</div>
+</section>
+
+<section class="catalog" id="catalogo">
+  <div class="section-title">
+    <h2>NUESTRO CATÁLOGO</h2>
+    <p>Encuentra las prendas que representan tu personalidad.</p>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <input
+    class="search-box"
+    type="search"
+    id="search"
+    placeholder="🔍 Buscar productos..."
+    oninput="renderProducts()"
+  >
+
+  <div class="products" id="products"></div>
+</section>
+
+<!-- CARRITO DE COMPRAS -->
+
+<aside class="cart-panel" id="cart">
+  <div class="cart-header">
+    <h2>🛒 Mi carrito</h2>
+    <button class="close-btn" onclick="toggleCart()">×</button>
+  </div>
+
+  <div id="cart-items"></div>
+
+  <div class="cart-total">
+    <h3>
+      Total:
+      <span id="cart-total">S/ 0.00</span>
+    </h3>
+    <button class="checkout-btn" onclick="goCheckout()">
+      CONTINUAR CON MI PEDIDO
+    </button>
+  </div>
+</aside>
+
+<!-- REGISTRO DEL CLIENTE -->
+
+<section class="checkout" id="checkout">
+  <form class="checkout-form" id="order-form">
+    <h2>📋 REGISTRO DEL CLIENTE</h2>
+    <p>Completa tus datos para registrar tu pedido.</p>
+
+    <label>Nombre completo</label>
+    <input type="text" id="customer-name" required placeholder="Ingresa tus nombres">
+
+    <label>Correo electrónico</label>
+    <input type="email" id="customer-email" required placeholder="ejemplo@gmail.com">
+
+    <label>Teléfono</label>
+    <input type="tel" id="customer-phone" required
+      pattern="[0-9+() -]{7,20}" placeholder="Número de contacto">
+
+    <label>Dirección de entrega</label>
+    <textarea id="customer-address" required rows="3"
+      placeholder="Ingresa tu dirección completa"></textarea>
+
+    <label>Ciudad o distrito</label>
+    <input type="text" id="customer-city" required placeholder="Tu ciudad">
+
+    <label>Método de pago</label>
+    <select id="payment" required>
+      <option value="">Seleccionar método</option>
+      <option>Pago contra entrega</option>
+      <option>Transferencia bancaria</option>
+      <option>Yape / Plin</option>
+    </select>
+
+    <label>Notas adicionales</label>
+    <textarea id="notes" rows="2" placeholder="Talla, color u otras indicaciones"></textarea>
+
+    <div class="cart-total">
+      <h3>Total del pedido: <span id="checkout-total">S/ 0.00</span></h3>
+    </div>
+
+    <button type="submit" class="confirm-btn">
+      CONFIRMAR PEDIDO ✓
+    </button>
+  </form>
+</section>
+
+<footer id="contacto">
+  <h2><strong>URBAN STORE</strong></h2>
+  <p>Tu estilo, tus reglas, tu identidad.</p>
+  <p>Moda urbana para hombres y mujeres.</p>
+  <p>© 2026 URBAN STORE - Todos los derechos reservados.</p>
+</footer>
+
+<script>
+
+// PRODUCTOS: 10 MODELOS POR CATEGORÍA
+
+const catalog = {
+  "Polos": [
+    "Polo Oversize Black", "Polo Urban White", "Polo Street Green",
+    "Polo Graphic Style", "Polo Minimal Gold", "Polo Vintage",
+    "Polo Basic Premium", "Polo Drop Shoulder", "Polo Street Art",
+    "Polo Essential"
+  ],
+  "Pantalones": [
+    "Jean Baggy Blue", "Cargo Street Black", "Jean Wide Leg",
+    "Pantalón Jogger", "Cargo Beige", "Jean Ripped",
+    "Pantalón Urban Fit", "Jean Classic", "Cargo Tactical",
+    "Pantalón Loose Fit"
+  ],
+  "Shorts": [
+    "Short Cargo Black", "Short Denim Blue", "Short Oversize",
+    "Short Sport Urban", "Short Beige", "Short Streetwear",
+    "Short Jogger", "Short Vintage", "Short Relaxed",
+    "Short Premium"
+  ],
+  "Gorras": [
+    "Gorra Snapback Black", "Gorra NY Blue", "Gorra Trucker",
+    "Gorra Classic Beige", "Gorra Urban Green", "Gorra Flat",
+    "Gorra Bordada", "Gorra Street Gold", "Gorra Vintage",
+    "Gorra Minimal"
+  ],
+  "Zapatillas": [
+    "Sneaker Urban White", "Sneaker Street Black", "Runner Blue",
+    "Classic Retro", "Sneaker Green", "Urban High Top",
+    "Sneaker Beige", "Skate Style", "Street Premium",
+    "Sneaker Classic"
+  ],
+  "Accesorios": [
+    "Cadena Urban Silver", "Collar Street Gold", "Pulsera Minimal",
+    "Anillo Urban", "Mochila Street", "Riñonera Black",
+    "Lentes Retro", "Reloj Casual", "Cartera Urban",
+    "Bolso Street"
+  ],
+  "Chaquetas": [
+    "Chaqueta Bomber Black", "Hoodie Oversize", "Chaqueta Denim",
+    "Hoodie Beige", "Chaqueta Varsity", "Hoodie Urban Green",
+    "Cazadora Street", "Chaqueta Windbreaker", "Hoodie Classic",
+    "Chaqueta Premium"
+  ]
+};
+
+const descriptions = {
+  "Polos": "Polo urbano de diseño moderno, cómodo y versátil. Ideal para combinar con tu outfit diario.",
+  "Pantalones": "Prenda urbana de corte moderno, confeccionada para ofrecer comodidad y libertad de movimiento.",
+  "Shorts": "Short casual de estilo streetwear, perfecto para crear combinaciones frescas y modernas.",
+  "Gorras": "Gorra de diseño urbano que complementa tu outfit y aporta personalidad a tu estilo.",
+  "Zapatillas": "Calzado de inspiración urbana, ideal para combinar comodidad y estilo en tu día a día.",
+  "Accesorios": "Accesorio moderno que añade un toque especial y original a cualquier combinación.",
+  "Chaquetas": "Chaqueta de estilo streetwear, ideal para completar tu look en cualquier temporada."
+};
+
+const prices = {
+  "Polos": 39,
+  "Pantalones": 89,
+  "Shorts": 49,
+  "Gorras": 35,
+  "Zapatillas": 129,
+  "Accesorios": 19,
+  "Chaquetas": 99
+};
+
+const images = [
+  "photo-1523398002811-999ca8dec234",
+  "photo-1521572163474-6864f9cf17ab",
+  "photo-1503341504253-dff4815485f1",
+  "photo-1515886657613-9f3515b0c78f",
+  "photo-1529139574466-a303027c1d8b",
+  "photo-1551488831-00ddcb6c6bd3",
+  "photo-1542272604-787c3835535d",
+  "photo-1551028719-00167b16eac5",
+  "photo-1517841905240-472988babdf9",
+  "photo-1525507119028-ed4c629a60a3"
+];
+
+const productsData = [];
+let productId = 1;
+
+Object.keys(catalog).forEach(category => {
+  catalog[category].forEach((name, index) => {
+    productsData.push({
+      id: productId++,
+      name,
+      category,
+      description: descriptions[category],
+      price: prices[category] + (index * 3),
+      image: `https://images.unsplash.com/${images[index]}?auto=format&fit=crop&w=600&q=80`,
+      audience: index % 2 === 0 ? "Hombre" : "Mujer"
+    });
+  });
+});
+
+let cart = [];
+let currentCategory = "Todos";
+
+// CREAR FILTROS
+
+const categories = ["Todos", ...Object.keys(catalog)];
+
+function createFilters() {
+  const container = document.getElementById("filters");
+
+  container.innerHTML = categories.map(category => `
+    <button
+      class="${category === currentCategory ? "active" : ""}"
+      onclick="filterCategory('${category}')">
+      ${category}
+    </button>
+  `).join("");
+}
+
+function filterCategory(category) {
+  currentCategory = category;
+  createFilters();
+  renderProducts();
+}
+
+// MOSTRAR PRODUCTOS
+
+function renderProducts() {
+  const container = document.getElementById("products");
+  const search = document.getElementById("search").value.toLowerCase();
+
+  const filtered = productsData.filter(product => {
+    const matchesCategory =
+      currentCategory === "Todos" || product.category === currentCategory;
+
+    const matchesSearch =
+      product.name.toLowerCase().includes(search) ||
+      product.category.toLowerCase().includes(search) ||
+      product.description.toLowerCase().includes(search) ||
+      product.audience.toLowerCase().includes(search);
+
+    return matchesCategory && matchesSearch;
+  });
+
+  if (!filtered.length) {
+    container.innerHTML = `<div class="empty">No se encontraron productos.</div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(product => `
+    <article class="product">
+      <img src="${product.image}" alt="${product.name}" loading="lazy"
+        onerror="this.src='https://placehold.co/600x500/ece4d5/163b62?text=URBAN+STORE'">
+      <div class="product-info">
+        <span class="category-tag">${product.category} · ${product.audience}</span>
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <div class="product-bottom">
+          <span class="price">S/ ${product.price.toFixed(2)}</span>
+          <button class="add-btn" onclick="addToCart(${product.id})">
+            + Agregar
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+// CARRITO
+
+function addToCart(id) {
+  const product = productsData.find(p => p.id === id);
+  const existing = cart.find(item => item.id === id);
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({...product, quantity: 1});
+  }
+
+  updateCart();
+}
+
+function changeQuantity(id, amount) {
+  const item = cart.find(p => p.id === id);
+  if (!item) return;
+
+  item.quantity += amount;
+
+  if (item.quantity <= 0) {
+    cart = cart.filter(p => p.id !== id);
+  }
+
+  updateCart();
+}
+
+function removeItem(id) {
+  cart = cart.filter(p => p.id !== id);
+  updateCart();
+}
+
+function updateCart() {
+  const container = document.getElementById("cart-items");
+
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  document.getElementById("cart-count").textContent = count;
+  document.getElementById("cart-total").textContent = `S/ ${total.toFixed(2)}`;
+  document.getElementById("checkout-total").textContent = `S/ ${total.toFixed(2)}`;
+
+  if (cart.length === 0) {
+    container.innerHTML = "<p style='padding:25px 0'>Tu carrito está vacío 🛍️</p>";
+  } else {
+    container.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div>
+          <h4>${item.name}</h4>
+          <small>S/ ${item.price.toFixed(2)} cada uno</small>
+          <div class="quantity">
+            <button onclick="changeQuantity(${item.id}, -1)">−</button>
+            <span>${item.quantity}</span>
+            <button onclick="changeQuantity(${item.id}, 1)">+</button>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <b>S/ ${(item.price * item.quantity).toFixed(2)}</b><br><br>
+          <button class="quantity remove-btn"
+            onclick="removeItem(${item.id})">Eliminar</button>
+        </div>
+      </div>
+    `).join("");
+  }
+}
+
+function toggleCart() {
+  document.getElementById("cart").classList.toggle("open");
+}
+
+function goCheckout() {
+  if (cart.length === 0) {
+    alert("Primero agrega productos a tu carrito.");
+    return;
+  }
+
+  document.getElementById("cart").classList.remove("open");
+
+  const section = document.getElementById("checkout");
+  section.classList.add("show");
+  section.scrollIntoView({behavior:"smooth"});
+}
+
+// CONFIRMAR PEDIDO
+
+document.getElementById("order-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (cart.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+
+  const name = document.getElementById("customer-name").value;
+  const email = document.getElementById("customer-email").value;
+  const phone = document.getElementById("customer-phone").value;
+  const address = document.getElementById("customer-address").value;
+  const city = document.getElementById("customer-city").value;
+  const payment = document.getElementById("payment").value;
+  const notes = document.getElementById("notes").value;
+
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity, 0
+  );
+
+  const order = {
+    cliente: name,
+    correo: email,
+    telefono: phone,
+    direccion: address,
+    ciudad: city,
+    pago: payment,
+    notas: notes,
+    productos: cart.map(item => ({
+      nombre: item.name,
+      cantidad: item.quantity,
+      precio: item.price
+    })),
+    total: total.toFixed(2),
+    fecha: new Date().toLocaleString("es-PE")
+  };
+
+  // Mostrar confirmación de demostración
+  const summary = order.productos.map(item =>
+    `${item.nombre} x${item.cantidad}`
+  ).join("\n");
+
+  alert(
+    "¡PEDIDO REGISTRADO!\n\n" +
+    "Gracias, " + name + ".\n\n" +
+    "Productos:\n" + summary +
+    "\n\nTotal: S/ " + order.total +
+    "\nMétodo de pago: " + payment +
+    "\n\nTu pedido está registrado en esta demostración."
+  );
+
+  console.log("PEDIDO:", order);
+
+  cart = [];
+  updateCart();
+  this.reset();
+
+  document.getElementById("checkout").classList.remove("show");
+  document.getElementById("inicio").scrollIntoView({behavior:"smooth"});
+});
+
+// INICIAR TIENDA
+
+createFilters();
+renderProducts();
+updateCart();
+
+</script>
+
+</body>
+</html>
